@@ -1,40 +1,39 @@
-<style>
-	.product_box {
-		border: 1px solid #000;
-		height: 150px;
-		width: 100px;
-		margin: 5px;
-		display: inline-block;
-		vertical-align: top;
-	}
-	img {
-		height: 50px;
-		width: 50px;
-	}
-</style>
+<div ng-controller = 'DashboardController'>
 
-<div ng-controller = 'DashboardsController.js'>
-	<input type = 'text' placeholder = 'Filter...' ng-model = 'filter_name'>
-	<div id = 'five_prods'>
-		<div ng-repeat = 'product in products | filter:filter_name | limitTo:5 track by $index' class = 'product_box'>
-			<img>
-			<p ng-bind = 'product.name'></p>
-			<p>({{product.quantity}} left)</p>
-		</div>
-		<a href = '#/products'>Show More</a>
-	</div>
-	<div id = 'three_orders'>
-		<h4>Recent Orders</h4>
-		<p ng-repeat = "order in orders | orderBy:createdAt:true | limitTo:3 track by $index">
-			{{order._customer.name}} has purchased {{order.quantity}} {{order._product.name}}(s) ({{order.createdAt | date: 'longDate'}}).
-		</p>
-		<a href = '#/orders'>Show All Orders</a>
-	</div>
-	<div id = 'three_customers'>
-		<h4>New Customers</h4>
-		<p ng-repeat = "customer in customers | orderBy:createdAt:true | limitTo:3 track by $index">
-			{{customer.name}} has joined the store. ({{customer.createdAt | date: 'longDate'}})
-		</p>
-		<a href = '#/customers'>Show All Customers</a>
-	</div>
+	<a href = '' ng-click = 'logout()'>Logout</a>
+
+	<h2>Welcome, <span ng-bind = 'username'></span>!</h2>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Category</th>
+				<th>Topic</th>
+				<th>User Name</th>
+				<th>Posts</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat = 'topic in topics | orderBy:createdAt:true track by $index'>
+				<td ng-bind = 'topic.category.name'></td>
+				<td><a href = '' ng-click = 'show(topic)' ng-bind = 'topic.name'></a></td>
+				<td ng-bind = 'topic.user.name'></td>
+				<td ng-bind = 'topic.posts.length'></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h3>Add a New Topic</h3>
+	<p ng-repeat = 'error in errors' ng-bind = 'error'></p>
+	<form ng-submit = 'addTopic()'>
+		<label>Topic</label>
+		<input type = 'text' ng-model = 'newTopic.name'>
+		<label>Description</label>
+		<textarea ng-model = 'newTopic.description'></textarea>
+		<label>Category</label>
+		<select ng-model = 'newTopic.category' ng-options = 'category as category.name for category in categories'>
+			<option value = '' disabled>Choose a Category</option>
+		</select>
+		<input type = 'submit' value = 'Submit'>
+	</form>
 </div>

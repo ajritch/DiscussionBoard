@@ -1,19 +1,19 @@
-var app = angular.module('app', ['ngRoute']);
+var app = angular.module('app', ['ngRoute', 'ngCookies']);
 
 app.config(function($routeProvider) {
 	$routeProvider
 		.when('/', {
-			templateUrl: 'static/partials/dashboard.html'
+			templateUrl: 'static/partials/login.html'
 		})
-		.when('/customers', {
-			templateUrl: 'static/partials/customers.html'
-		})
-		.when('/products', {
-			templateUrl: 'static/partials/products.html'
-		})
-		.when('/orders', {
-			templateUrl: 'static/partials/orders.html'
-		})
+        .when('/dashboard', {
+            templateUrl: 'static/partials/dashboard.html'
+        })
+        .when('/topic/:topic', {
+            templateUrl: 'static/partials/topic.html'
+        })
+        .when('/user/:user', {
+            templateUrl: 'static/partials/user.html'
+        })
 		.otherwise({
 			redirectTo: '/'
 		});

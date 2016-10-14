@@ -2,34 +2,29 @@
 <html lang = 'en' ng-app = 'app'>
 	<head>
 		<meta charset = 'UTF-8'>
-		<title>MEAN Mini Store</title>
+		<title></title>
 
 		<!-- Angular -->
 		<script type = 'text/javascript' src = 'angular/angular.js'></script>
 		<script type = 'text/javascript' src = 'angular-route/angular-route.js'></script>
+		<script type = 'text/javascript' src = 'angular-cookies/angular-cookies.js'></script>
 
 		<!-- Module, Factories, Controllers -->
-		<script type = 'text/javascript' src = 'js/config/routes.js'>
-		</script>
-		<script type = 'text/javascript' src = 'js/factories/customerFactory.js'></script>
-		<script type = 'text/javascript' src = 'js/factories/productFactory.js'></script>
-		<script type = 'text/javascript' src = 'js/factories/orderFactory.js'></script>
-		<script type = 'text/javascript' src = 'js/controllers/CustomersController.js'></script>
-		<script type = 'text/javascript' src = 'js/controllers/ProductsController.js'></script>
-		<script type = 'text/javascript' src = 'js/controllers/OrdersController.js'></script>
-		<script type = 'text/javascript' src = 'js/controllers/DashboardsController.js'></script>
+		<script type = 'text/javascript' src = 'js/config/config.js'></script>
+		<script type = 'text/javascript' src = 'js/factories/userFactory.js'></script>
+		<script type = 'text/javascript' src = 'js/factories/dashboardFactory.js'></script>
+		<script type = 'text/javascript' src = 'js/factories/topicFactory.js'></script>
+		<script type = 'text/javascript' src = 'js/factories/postFactory.js'></script>
+		<script type = 'text/javascript' src = 'js/controllers/LoginController.js'></script>
+		<script type = 'text/javascript' src = 'js/controllers/DashboardController.js'></script>
+		<script type = 'text/javascript' src = 'js/controllers/TopicController.js'></script>
+
+
 
 
 	</head>
 	<body>
-		<div>
-			<a href = '#/'>Dashboard</a>
-			| <a href = '#/products'>Products</a>
-			| <a href = '#/orders'>Orders</a>
-			| <a href = '#/customers'>Customers</a>
-			| <a href = '#/settings'>Settings</a>
-			<div ng-view>
-			</div>
+		<div ng-view>
 		</div>
 	</body>
 </html>

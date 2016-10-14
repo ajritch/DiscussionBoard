@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var fs = require('fs');
 
 //connect to db
-mongoose.connect('mongodb://localhost/mean_ministore_db');
+mongoose.connect('mongodb://localhost/discussion_board_db');
 
 //require all models in directory
 var models_path = __dirname + '/../models';
