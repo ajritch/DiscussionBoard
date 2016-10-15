@@ -3,9 +3,7 @@ app.controller('TopicController', function($scope, $cookies, $location, $routePa
 	$scope.username = $cookies.get('username');
 	$scope.topic = {};
 	$scope.newPost = {};
-	// $scope.newComment = {};
 	$scope.newPost.user = $scope.username;
-	// $scope.newComment.user = $scope.username;
 
 	//check for username cookie, otherwise return to login!
 	if ($scope.username == undefined) {
@@ -21,10 +19,8 @@ app.controller('TopicController', function($scope, $cookies, $location, $routePa
 			$scope.error = null;
 			$scope.topic = data;
 			$scope.newPost = {};
-			// $scope.newComment = {};
 			$scope.newPost.user = $scope.username;
-			// $scope.newComment.user = $scope.username;
-			console.log(data);
+			// console.log(data);
 		}
 	}
 
@@ -47,6 +43,21 @@ app.controller('TopicController', function($scope, $cookies, $location, $routePa
 		//remove username from cookies
 		$cookies.remove('username');
 		$location.path('/')
+	}
+
+	//upvote a post
+	$scope.upvote = function(post) {
+		postFactory.upvote($scope.topic, post, setTopic);
+	}
+
+	//downvote a post
+	$scope.downvote = function(post) {
+		postFactory.downvote($scope.topic, post, setTopic);
+	}
+
+	//show page for particular user
+	$scope.showUser = function(user) {
+		$location.path('/user/' + user._id);
 	}
 
 });

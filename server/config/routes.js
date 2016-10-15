@@ -47,5 +47,20 @@ module.exports = function(app) {
 		posts.addComment(req, res);
 	});
 
+	//upvote a post
+	app.get('/upvote/:id', function(req, res) {
+		posts.upvote(req, res);
+	});
+
+	//downvote a post
+	app.get('/downvote/:id', function(req, res) {
+		posts.downvote(req, res);
+	});
+
+	//get a specific user
+	app.get('/users/:id', function(req, res) {
+		users.getOne(req, res);
+	});
+
 
 }

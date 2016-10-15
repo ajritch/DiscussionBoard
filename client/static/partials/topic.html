@@ -3,7 +3,7 @@
 	<a href = '#/dashboard'>Dashboard</a>
 	<a href = '' ng-click = 'logout()'>Logout</a>
 
-	<p><span ng-bind = 'topic.user.name'></span> posted a topic:</p>
+	<p><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></a> posted a topic:</p>
 
 	<h3 ng-bind = 'topic.name'></h3>
 	<h4>Description: <span ng-bind = 'topic.description'></span></h4>
@@ -15,11 +15,14 @@
 		<input type = 'submit' value = 'Post'>
 	</form>
 
-	<!--ANSWERS-->
-	<div ng-repeat = 'post in topic.posts'>
-		<p><span ng-bind = 'post.user.name'></span>: <span ng-bind = 'post.text'></span></p>
-		<p>Upvotes: <span ng-bind = 'post.upvotes'></span> Downvotes: <span ng-bind = 'post.downvotes'></span></p>
-		<p ng-repeat = 'comment in post.comments'><span ng-bind = 'comment.user.name'></span>: <span ng-bind = 'comment.text'></span></p>
+	<!--ANSWERS ordered by net difference in upvotes-downvotes-->
+	<div ng-repeat = 'post in topic.posts | orderBy:"upvotes":true track by $index'>
+		<p><a href = '' ng-click = 'showUser(post.user)' ng-bind = 'post.user.name'></a>: <span ng-bind = 'post.text'></span></p>
+		<button ng-click = 'upvote(post)'>Up</button> 
+		<span ng-bind = 'post.upvotes'></span>
+		<button ng-click = 'downvote(post)'>Down</button>
+		<span ng-bind = 'post.downvotes'></span>
+		<p ng-repeat = 'comment in post.comments'><a href = '' ng-click = 'showUser(comment.user)' ng-bind = 'comment.user.name'></a>: <span ng-bind = 'comment.text'></span></p>
 		<form ng-submit = 'addComment(post)'>
 			<textarea ng-model = post.newComment></textarea>
 			<input type = 'submit' value = "Comment">

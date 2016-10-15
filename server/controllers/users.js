@@ -22,6 +22,17 @@ module.exports = (function() {
 					res.json({'userfound': true})
 				}
 			});
+		},
+
+		//get a specific user
+		getOne: function(req, res) {
+			User.findOne({_id: req.params.id}).exec(function(err, data) {
+				if (err) {
+					res.json(err);
+				} else {
+					res.json(data);
+				}
+			});
 		}
 	}
 })();

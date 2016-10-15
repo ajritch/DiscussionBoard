@@ -17,7 +17,7 @@
 			<tr ng-repeat = 'topic in topics | orderBy:createdAt:true track by $index'>
 				<td ng-bind = 'topic.category.name'></td>
 				<td><a href = '' ng-click = 'show(topic)' ng-bind = 'topic.name'></a></td>
-				<td ng-bind = 'topic.user.name'></td>
+				<td><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></td>
 				<td ng-bind = 'topic.posts.length'></td>
 			</tr>
 		</tbody>

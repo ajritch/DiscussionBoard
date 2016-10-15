@@ -45,7 +45,13 @@ module.exports = (function() {
 						} else {
 							//add topic to list of user's topics
 							user.topics.push(topic);
-							res.json({'saved': true});
+							user.save(function(err) {
+								if (err) {
+									res.json(err);
+								} else {
+									res.json({'saved': true});
+								}
+							});
 						}
 					});
 				}

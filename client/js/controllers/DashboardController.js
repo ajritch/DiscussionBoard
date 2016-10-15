@@ -43,6 +43,11 @@ app.controller('DashboardController', function($scope, $cookies, $location, dash
 		$location.path('/topic/' + topic._id);
 	}
 
+	//show page for particular user
+	$scope.showUser = function(user) {
+		$location.path('/user/' + user._id);
+	}
+
 	//logout
 	$scope.logout = function() {
 		//remove username from cookies

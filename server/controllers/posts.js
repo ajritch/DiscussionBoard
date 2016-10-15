@@ -94,7 +94,47 @@ module.exports = (function() {
 					});
 				}
 			});
-		} //end of add comment
+		}, //end of add comment
+
+		//upvote a post
+		upvote: function(req, res) {
+			//find the post
+			Post.findOne({_id: req.params.id}).exec(function(err, post) {
+				if (err) {
+					res.json(err);
+				} else {
+					//increment the upvote value of that post!
+					post.upvotes++;
+					post.save(function(err) {
+						if (err) {
+							res.json(err);
+						} else {
+							res.json({'saved': true});
+						}
+					});
+				}
+			});
+		},
+
+		//downvote a post
+		downvote: function(req, res) {
+			//find the post
+			Post.findOne({_id: req.params.id}).exec(function(err, post) {
+				if (err) {
+					res.json(err);
+				} else {
+					//increment the upvote value of that post!
+					post.downvotes++;
+					post.save(function(err) {
+						if (err) {
+							res.json(err);
+						} else {
+							res.json({'saved': true});
+						}
+					});
+				}
+			});
+		}
 
 
 	}

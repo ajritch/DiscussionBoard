@@ -1,0 +1,12 @@
+<div ng-controller = 'PersonController'>
+
+	<a href = '#/dashboard'>Dashboard</a>
+	<a href = '' ng-click = 'logout()'>Logout</a>
+
+	<h2>Username: <span ng-bind = 'user.name'></span></h2>
+	<h4>Posted....</h4>
+	<p><span ng-bind = 'user.topics.length'></span> Topic(s)</p>
+	<p><span ng-bind = 'user.posts.length'></span> Post(s)</p>
+	<p><span ng-bind = 'user.comments.length'></span> Comment(s)</p>
+
+</div>

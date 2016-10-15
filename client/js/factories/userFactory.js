@@ -8,5 +8,12 @@ app.factory('userFactory', function($http) {
 		});
 	}
 
+	//get a specific user
+	factory.getById = function(id, callback) {
+		$http.get('/users/' + id).then(function(data) {
+			callback(data['data']);
+		});
+	}
+
 	return factory;
 });

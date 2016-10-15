@@ -34,5 +34,33 @@ app.factory('postFactory', function($http) {
 		}
 	}
 
+	//upvote a post!
+	factory.upvote = function(topic, post, callback) {
+		$http.get('/upvote/' + post._id).then(function(data) {
+			if (data['data']['errors']) {
+				callback(data['data']);
+			} else {
+				//get all topics to update page
+				$http.get('/topics/' + topic._id).then(function(data) {
+					callback(data['data']);
+				});
+			}
+		});
+	}
+
+	//downvote a post!
+	factory.downvote = function(topic, post, callback) {
+		$http.get('/downvote/' + post._id).then(function(data) {
+			if (data['data']['errors']) {
+				callback(data['data']);
+			} else {
+				//get all topics to update page
+				$http.get('/topics/' + topic._id).then(function(data) {
+					callback(data['data']);
+				});
+			}
+		});
+	}
+
 	return factory;
 });
