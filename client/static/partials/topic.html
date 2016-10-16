@@ -1,32 +1,64 @@
 <div ng-controller = 'TopicController'>
 
-	<a href = '#/dashboard'>Dashboard</a>
-	<a href = '' ng-click = 'logout()'>Logout</a>
+	<nav class = 'navbar navbar-default'>
+		<div class = 'container-fluid'>
+			<ul class = 'nav navbar-nav'>
+				<li>
+					<a href = '#/dashboard'>GeoBoard</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a href = '' ng-click = 'logout()'>Logout</a>
+                </li>
+     
+            </ul>
+        </div>
+    </nav>
 
-	<p><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></a> posted a topic:</p>
 
-	<h3 ng-bind = 'topic.name'></h3>
-	<h4>Description: <span ng-bind = 'topic.description'></span></h4>
+    <div class = 'container-fluid'>
+    	<div class = 'col-md-12'>
+			<h4><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></a> posted a topic:</h4>
 
-	<h4>Post your answer here:</h4>
-	<p ng-bind = 'error'>
-	<form ng-submit = 'addPost()'>
-		<textarea ng-model = 'newPost.text'></textarea>
-		<input type = 'submit' value = 'Post'>
-	</form>
+			<h2 ng-bind = 'topic.name'></h2>
+			<h4><span ng-bind = 'topic.description'></span></h4>
+		</div>
 
-	<!--ANSWERS ordered by net difference in upvotes-downvotes-->
-	<div ng-repeat = 'post in topic.posts | orderBy:"upvotes":true track by $index'>
-		<p><a href = '' ng-click = 'showUser(post.user)' ng-bind = 'post.user.name'></a>: <span ng-bind = 'post.text'></span></p>
-		<button ng-click = 'upvote(post)'>Up</button> 
-		<span ng-bind = 'post.upvotes'></span>
-		<button ng-click = 'downvote(post)'>Down</button>
-		<span ng-bind = 'post.downvotes'></span>
-		<p ng-repeat = 'comment in post.comments'><a href = '' ng-click = 'showUser(comment.user)' ng-bind = 'comment.user.name'></a>: <span ng-bind = 'comment.text'></span></p>
-		<form ng-submit = 'addComment(post)'>
-			<textarea ng-model = post.newComment></textarea>
-			<input type = 'submit' value = "Comment">
-		</form>
+
+		<div class = 'col-md-8'>
+			<h4>Post your answer here:</h4>
+			<p class = 'text-danger' ng-bind = 'error'></p>
+			<form ng-submit = 'addPost()'>
+				<textarea class = 'form-control' ng-model = 'newPost.text'></textarea>
+				<br>
+				<input type = 'submit' value = 'Post' class = 'btn btn-primary pull-right'>
+			</form>
+		</div>
+
+		<!--ANSWERS ordered by net difference in upvotes-downvotes-->
+		<div class = 'col-md-8'>
+			<div ng-repeat = 'post in topic.posts | orderBy:"upvotes":true track by $index'>
+				<h4><a href = '' ng-click = 'showUser(post.user)' ng-bind = 'post.user.name'></a>: <span ng-bind = 'post.text'></span></h4>
+				<button class = 'btn btn-success btn-xs' ng-click = 'upvote(post)'>Up</button> 
+				<span ng-bind = 'post.upvotes'></span>
+				<button class = 'btn btn-danger btn-xs' ng-click = 'downvote(post)'>Down</button>
+				<span ng-bind = 'post.downvotes'></span>
+				<br><br>
+				<div class = 'col-md-offset-1'>
+					<p ng-repeat = 'comment in post.comments'><a href = '' ng-click = 'showUser(comment.user)' ng-bind = 'comment.user.name'></a>: <span ng-bind = 'comment.text'></span></p>
+					<form ng-submit = 'addComment(post)'>
+						<textarea class = 'form-control' ng-model = post.newComment></textarea>
+						<br>
+						<input class = 'btn btn-info btn-sm pull-right' type = 'submit' value = "Comment">
+					</form>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
 </div>

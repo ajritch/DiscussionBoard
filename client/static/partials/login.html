@@ -1,9 +1,23 @@
 <div ng-controller = 'LoginController'>
-	<p>Hello!</p>
-	<p>Please enter your name to join and share your ideas!</p>
-	<p ng-repeat = 'error in errors' ng-bind = 'error'></p>
-	<form ng-submit = 'add()'>
-		<input type = 'text' ng-model = 'newUser.name' required>
-		<input type = 'submit' value = 'Enter'>
-	</form>
+
+	<nav class = 'navbar navbar-default'>
+		<div class = 'container-fluid'>
+			<ul class = 'nav navbar-nav'>
+				<li>
+					<a href = #/dashboard>GeoBoard</a>
+				</li>
+			</ul>
+        </div>
+    </nav>
+
+    <div class = 'container-fluid'>
+		<h1>Welcome to GeoBoard!</h1>
+		<br>
+		<p>Please enter your name to join and share your ideas!</p>
+		<p class = 'text-danger' ng-repeat = 'error in errors' ng-bind = 'error'></p>
+		<form ng-submit = 'add()'>
+			<input type = 'text' ng-model = 'newUser.name' required>
+			<input type = 'submit' value = 'Enter' class = 'btn btn-success btn-sm'>
+		</form>
+	</div>
 </div>

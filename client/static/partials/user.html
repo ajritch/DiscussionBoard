@@ -1,12 +1,32 @@
 <div ng-controller = 'PersonController'>
 
-	<a href = '#/dashboard'>Dashboard</a>
-	<a href = '' ng-click = 'logout()'>Logout</a>
+	<nav class = 'navbar navbar-default'>
+		<div class = 'container-fluid'>
+			<ul class = 'nav navbar-nav'>
+				<li>
+					<a href = '#/dashboard'>GeoBoard</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a href = '' ng-click = 'logout()'>Logout</a>
+                </li>
+     
+            </ul>
+        </div>
+    </nav>
 
-	<h2>Username: <span ng-bind = 'user.name'></span></h2>
-	<h4>Posted....</h4>
-	<p><span ng-bind = 'user.topics.length'></span> Topic(s)</p>
-	<p><span ng-bind = 'user.posts.length'></span> Post(s)</p>
-	<p><span ng-bind = 'user.comments.length'></span> Comment(s)</p>
+    <div class = 'container-fluid'>
+		<h2>Username: <span ng-bind = 'user.name'></span></h2>
+		<div class = 'container'>
+			<h4>Posted....</h4>
+			<p><span ng-bind = 'user.topics.length'></span> Topic(s)</p>
+			<p><span ng-bind = 'user.posts.length'></span> Post(s)</p>
+			<p><span ng-bind = 'user.comments.length'></span> Comment(s)</p>
+		</div>
+	</div>
 
 </div>

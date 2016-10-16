@@ -1,39 +1,85 @@
 <div ng-controller = 'DashboardController'>
 
-	<a href = '' ng-click = 'logout()'>Logout</a>
+	<nav class = 'navbar navbar-default'>
+		<div class = 'container-fluid'>
+			<ul class = 'nav navbar-nav'>
+				<li>
+					<a href = '#/dashboard'>GeoBoard</a>
+				</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+                <li class = 'active'>
+                    <a href="#/dashboard">Dashboard</a>
+                </li>
+                <li>
+                    <a href = '' ng-click = 'logout()'>Logout</a>
+                </li>
+     
+            </ul>
+        </div>
+    </nav>
 
-	<h2>Welcome, <span ng-bind = 'username'></span>!</h2>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Category</th>
-				<th>Topic</th>
-				<th>User Name</th>
-				<th>Posts</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat = 'topic in topics | orderBy:createdAt:true track by $index'>
-				<td ng-bind = 'topic.category.name'></td>
-				<td><a href = '' ng-click = 'show(topic)' ng-bind = 'topic.name'></a></td>
-				<td><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></td>
-				<td ng-bind = 'topic.posts.length'></td>
-			</tr>
-		</tbody>
-	</table>
+    <div class = 'container-fluid'>
+    	<div class = 'col-md-7'>
+			<h3>Welcome to GeoBoard, <span ng-bind = 'username'></span>!</h3>
+			<br>
 
-	<h3>Add a New Topic</h3>
-	<p ng-repeat = 'error in errors' ng-bind = 'error'></p>
-	<form ng-submit = 'addTopic()'>
-		<label>Topic</label>
-		<input type = 'text' ng-model = 'newTopic.name'>
-		<label>Description</label>
-		<textarea ng-model = 'newTopic.description'></textarea>
-		<label>Category</label>
-		<select ng-model = 'newTopic.category' ng-options = 'category as category.name for category in categories'>
-			<option value = '' disabled>Choose a Category</option>
-		</select>
-		<input type = 'submit' value = 'Submit'>
-	</form>
+			<input class = 'pull-right' type = 'text' ng-model = 'filter_name' placeholder = 'Search...'>
+
+			<table class = 'table table-bordered table-striped'>
+				<thead>
+					<tr>
+						<th>
+							<a href = '' ng-click = "sortType = 'category'; sortReverse = !sortReverse">Category</a>
+							<span ng-show = "sortType == 'category' && !sortReverse">v</span>
+							<span ng-show = "sortType == 'category' && sortReverse">^</span>
+						</th>
+						<th>
+							<a href = '' ng-click = "sortType = 'topic.name'; sortReverse = !sortReverse">Topic</a>
+							<span ng-show = "sortType == 'topic.name' && !sortReverse">v</span>
+							<span ng-show = "sortType == 'topic.name' && sortReverse">^</span>
+						</th>
+						<th>
+							<a href = '' ng-click = "sortType = 'topic.user.name'; sortReverse = !sortReverse">User Name</a>
+							<span ng-show = "sortType == 'topic.user.name' && !sortReverse">v</span>
+							<span ng-show = "sortType == 'topic.user.name' && sortReverse">^</span>
+						</th>
+						<th>
+							<a href = '' ng-click = "sortType = 'posts'; sortReverse = !sortReverse">Posts</a>
+							<span ng-show = "sortType == 'posts' && !sortReverse">v</span>
+							<span ng-show = "sortType == 'posts' && sortReverse">^</span>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat = 'topic in topics | orderBy:sortType:sortReverse | filter: filter_name track by $index'>
+						<td ng-bind = 'topic.category.name'></td>
+						<td><a href = '' ng-click = 'show(topic)' ng-bind = 'topic.name'></a></td>
+						<td><a href = '' ng-click = 'showUser(topic.user)' ng-bind = 'topic.user.name'></a></td>
+						<td ng-bind = 'topic.posts.length'></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class = 'col-md-6'>
+			<h3>Add a New Topic</h3>
+			<p class = 'text-danger' ng-repeat = 'error in errors' ng-bind = 'error'></p>
+			<form ng-submit = 'addTopic()'>
+				<label>Topic:</label>
+				<input class = 'form-control' type = 'text' ng-model = 'newTopic.name' required>
+				<label>Description:</label>
+				<textarea class = 'form-control' ng-model = 'newTopic.description'></textarea>
+				<label>Category:</label>
+				<select class = 'form-control' ng-model = 'newTopic.category' ng-options = 'category as category.name for category in categories'>
+					<option value = '' disabled>Choose a Category</option>
+				</select>
+				<br>
+				<input class = 'btn btn-success pull-right' type = 'submit' value = 'Submit'>
+			</form>
+		</div>
+
+	</div>
+
 </div>
